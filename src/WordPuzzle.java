@@ -26,10 +26,10 @@ public class WordPuzzle {
         {
             if (r == 0 || c == 0)                                           // is the box on the top or on the left?
             {return true; }
-            if (blackBoxes[r-1][c] == false || blackBoxes[r][c-1] == false) // is the box next to a black box on top or left?
+            if (blackBoxes[r-1][c]|| blackBoxes[r][c-1]) // is the box next to a black box on top or left?
             {return true; }
         }
-		return false;    
+		return false;
     }
 
     /* Write the WordPuzzle Constructor.  The constructor should initialize the
@@ -50,10 +50,24 @@ public class WordPuzzle {
      * @param blackBoxes - a 2D array of Boxes
      */
     public WordPuzzle(boolean [][] blackBoxes){
-        /* to be implemented in part b */
-        
-		
-		
+        puzzle = new Box[blackBoxes.length][blackBoxes[0].length];
+        int currNumber = 1;
+
+        for (int r = 0; r < puzzle.length; r ++)
+        {
+            for (int c = 0; c < puzzle[r].length; c++)
+            {
+                if(toBeLabeled(r, c, blackBoxes))
+                {
+                    puzzle[r][c] = new Box(false, currNumber);
+                    currNumber++;
+                }
+                else
+                {
+                    puzzle[r][c] = new Box(blackBoxes[r][c], 0);
+                }
+            }
+        }
     }
 
 
