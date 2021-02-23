@@ -1,7 +1,7 @@
 
 public class NitalTester {
 
-    /** Returns true if and ony if avery value in arr1 appears in arr2.
+    /** Returns true if and ony if every value in arr1 appears in arr2.
      * Precondition: arr1 and arr2 are the same length.
      * Postcondition: arr1 and arr2 are unchanged.
      */
@@ -43,7 +43,7 @@ public class NitalTester {
     When the code segment has completed execution, the variable result
     will have the following contents:
 
-                result: {1, 4, 7, 5}
+                result: {1, 4, 5}
      */
 
     /** Returns an array containing the elements of column c of
@@ -52,11 +52,15 @@ public class NitalTester {
      * Postcondition: arr2D is unchanged.
      */
     public static int [] getColumn(int[][] arr2D, int c){
-		/* to be written in part a */
-        
-		
-		int[] yo = new int[5];
-		return yo;   //replace this
+
+        int[] column = new int[arr2D.length];
+
+        for(int r = 0; r < arr2D.length; r++)
+        {
+            column[r] = arr2D[r][c];
+        }
+
+		return column;
     }
 
     /* Write the method isNital below.  You must use getColumn,
@@ -69,12 +73,16 @@ public class NitalTester {
      *      square has at least one row.
      */
     public static boolean isNital(int[][] square){
-		/* to be written in part b */
-		
-        
-		
-		
-        return false;   // replace this
+		if (containsRepeats(square[0])) {return false;}
+		for(int r = 1; r < square.length; r++)
+        {
+            if(!hasAllValues(square[0], square[r])){return false;}
+        }
+		for(int c = 0; c < square[0].length; c++)
+		{
+            if(!hasAllValues(square[0], getColumn(square, c))) {return false;}
+        }
+        return true;
     }
 
     public static void main(String[] args){
