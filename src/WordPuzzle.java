@@ -22,12 +22,14 @@ public class WordPuzzle {
      * Precondition: r and c are valid indexes in blackBoxes
      */
     public boolean toBeLabeled(int r, int c, boolean [][] blackBoxes){
-        /* to be implemented in part a */
-		
-		
-		
-		
-		return false;    // replace this
+        if (!blackBoxes[r][c])                                              // is the box black?
+        {
+            if (r == 0 || c == 0)                                           // is the box on the top or on the left?
+            {return true; }
+            if (blackBoxes[r-1][c] == false || blackBoxes[r][c-1] == false) // is the box next to a black box on top or left?
+            {return true; }
+        }
+		return false;    
     }
 
     /* Write the WordPuzzle Constructor.  The constructor should initialize the
